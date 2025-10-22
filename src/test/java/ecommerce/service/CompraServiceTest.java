@@ -47,5 +47,7 @@ public class CompraServiceTest
 		// O método isEqualByComparingTo não leva em conta escala
 		// e não precisa instanciar um BigDecimal para fazer a comparação
 		assertThat(custoTotal).as("Custo Total da Compra").isEqualByComparingTo("0.0");
+		
+		System.out.println("Testando teste");
 	}
 }
