@@ -63,9 +63,13 @@ public class Produto
 		return id;
 	}
 
-	public void setId(Long id)
+	public void setId(Long id) throws IllegalArgumentException
 	{
-		this.id = id;
+		if(id >= 1) {
+			this.id = id;
+		} else {
+			throw new IllegalArgumentException("Id inválido");
+		}
 	}
 
 	public String getNome()
@@ -93,9 +97,13 @@ public class Produto
 		return preco;
 	}
 
-	public void setPreco(BigDecimal preco)
+	public void setPreco(BigDecimal preco) throws IllegalArgumentException
 	{
-		this.preco = preco;
+		if(preco.compareTo(BigDecimal.ZERO) != -1) {
+			this.preco = preco;
+		} else {
+			throw new IllegalArgumentException("Preço inválido");
+		}
 	}
 
 	public BigDecimal getPesoFisico()
@@ -103,9 +111,13 @@ public class Produto
 		return pesoFisico;
 	}
 
-	public void setPesoFisico(BigDecimal pesoFisico)
+	public void setPesoFisico(BigDecimal pesoFisico) throws IllegalArgumentException
 	{
-		this.pesoFisico = pesoFisico;
+		if(pesoFisico.compareTo(BigDecimal.ZERO) == 1) {
+			this.pesoFisico = pesoFisico;
+		} else {
+			throw new IllegalArgumentException("Peso físico inválido");
+		}
 	}
 
 	public BigDecimal getComprimento()
@@ -113,9 +125,13 @@ public class Produto
 		return comprimento;
 	}
 
-	public void setComprimento(BigDecimal comprimento)
+	public void setComprimento(BigDecimal comprimento) throws IllegalArgumentException
 	{
-		this.comprimento = comprimento;
+		if(comprimento.compareTo(BigDecimal.ZERO) == 1) {
+			this.comprimento = comprimento;
+		} else {
+			throw new IllegalArgumentException("Comprimento inválido");
+		}
 	}
 
 	public BigDecimal getLargura()
@@ -123,9 +139,13 @@ public class Produto
 		return largura;
 	}
 
-	public void setLargura(BigDecimal largura)
+	public void setLargura(BigDecimal largura) throws IllegalArgumentException
 	{
-		this.largura = largura;
+		if(largura.compareTo(BigDecimal.ZERO) == 1) {
+			this.largura = largura;
+		} else {
+			throw new IllegalArgumentException("Largura inválida");
+		}
 	}
 
 	public BigDecimal getAltura()
@@ -133,9 +153,13 @@ public class Produto
 		return altura;
 	}
 
-	public void setAltura(BigDecimal altura)
+	public void setAltura(BigDecimal altura) throws IllegalArgumentException
 	{
-		this.altura = altura;
+		if(altura.compareTo(BigDecimal.ZERO) == 1) {
+			this.altura = altura;
+		} else {
+			throw new IllegalArgumentException("Altura inválida");
+		}
 	}
 
 	public Boolean isFragil()

@@ -38,9 +38,13 @@ public class ItemCompra
 		return id;
 	}
 
-	public void setId(Long id)
+	public void setId(Long id) throws IllegalArgumentException
 	{
-		this.id = id;
+		if(id >= 1) {
+			this.id = id;
+		} else {
+			throw new IllegalArgumentException("Id inválido");
+		}
 	}
 
 	public Produto getProduto()
@@ -58,8 +62,12 @@ public class ItemCompra
 		return quantidade;
 	}
 
-	public void setQuantidade(Long quantidade)
+	public void setQuantidade(Long quantidade) throws IllegalArgumentException
 	{
-		this.quantidade = quantidade;
+		if(quantidade >= 1) {
+			this.quantidade = quantidade;
+		} else {
+			throw new IllegalArgumentException("Quantidade inválida");
+		}
 	}
 }

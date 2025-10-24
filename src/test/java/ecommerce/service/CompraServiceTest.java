@@ -7,18 +7,22 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import ecommerce.entity.CarrinhoDeCompras;
 import ecommerce.entity.ItemCompra;
 import ecommerce.entity.Regiao;
 import ecommerce.entity.TipoCliente;
 
-public class CompraServiceTest
-{
-	@Test
-	public void calcularCustoTotal()
-	{
+public class CompraServiceTest {
+	
+	@ParameterizedTest
+	@CsvSource({"100, 7.5, 4.5, 6, APR",
+				"100, 4, 7, 10, APR",
+				"80, 3.9, 6.1, 8, REC"})
+	public void deveCalcularCustoTotalCorretamente(Regiao regiao, TipoCliente tipoCliente, BigDecimal custoEsperado) {
+		//Arrange
 		CompraService service = new CompraService(null, null, null, null);
 
 		CarrinhoDeCompras carrinho = new CarrinhoDeCompras();
@@ -34,7 +38,7 @@ public class CompraServiceTest
 		itens.add(item3);
 		carrinho.setItens(itens);
 
-		BigDecimal custoTotal = service.calcularCustoTotal(carrinho, Regiao.NORDESTE, TipoCliente.OURO);
+		BigDecimal custoTotal = service.calcularCustoTotal(carrinho, regiao, tipoCliente);
 
 		// Ao trabalhar com BigDecimal, evite comparar com equals() -- método que o
 		// assertEquals usa,
@@ -46,8 +50,6 @@ public class CompraServiceTest
 		// Uma alternativa mais elegante, é usar a lib AssertJ
 		// O método isEqualByComparingTo não leva em conta escala
 		// e não precisa instanciar um BigDecimal para fazer a comparação
-		assertThat(custoTotal).as("Custo Total da Compra").isEqualByComparingTo("0.0");
-		
-		System.out.println("Testando teste");
+		assertThat(custoTotal).as("Custo Total da Compra").isEqualByComparingTo(custoEsperado);
 	}
 }
