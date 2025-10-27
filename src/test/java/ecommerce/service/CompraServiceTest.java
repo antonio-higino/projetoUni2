@@ -20,11 +20,7 @@ public class CompraServiceTest {
 
 	@ParameterizedTest
 	@CsvSource({
-			"SUDESTE, BRONZE",
-			"SUL, PRATA",
-			"NORDESTE, OURO",
-			"CENTRO_OESTE, BRONZE",
-			"NORTE, PRATA"
+			"10, 0, 0, 0, 0, NORDESTE, PRATA, 470.10"
 	})
 	public void deveCalcularCustoTotalCorretamente(
 			Long quantidadeEletronico, 
@@ -46,8 +42,8 @@ public class CompraServiceTest {
 		// Criar produtos de teste
 		Produto produto1 = new Produto();
 		produto1.setNome("Eletronico");
-		produto1.setPreco(new BigDecimal("50.00"));
-		produto1.setPesoFisico(new BigDecimal("1.0"));
+		produto1.setPreco(new BigDecimal("50"));
+		produto1.setPesoFisico(new BigDecimal("1"));
 		produto1.setComprimento(new BigDecimal("10"));
 		produto1.setLargura(new BigDecimal("10"));
 		produto1.setAltura(new BigDecimal("10"));
