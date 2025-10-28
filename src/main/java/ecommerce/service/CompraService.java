@@ -262,10 +262,6 @@ public class CompraService
 		custoTotal = subtotal.add(frete);
 		custoTotal = custoTotal.setScale(2, RoundingMode.HALF_UP);
 		
-		System.out.println("Subtotal: " + subtotal);
-		System.out.println("Frete: " + frete);
-		System.out.println("Custo total: " + custoTotal);
-		
 		return custoTotal;
 	}
 }
