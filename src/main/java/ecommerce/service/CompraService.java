@@ -1,7 +1,6 @@
 package ecommerce.service;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -90,11 +89,9 @@ public class CompraService
 		final BigDecimal DESCONTO_15 = new BigDecimal("0.85");
 		final BigDecimal DESCONTO_20 = new BigDecimal("0.80");
 		
-		MathContext mc = new MathContext(3, RoundingMode.HALF_UP);
-		
-		BigDecimal subtotal = BigDecimal.ZERO;
-		BigDecimal frete = BigDecimal.ZERO;
-		BigDecimal custoTotal = BigDecimal.ZERO;
+		BigDecimal subtotal = new BigDecimal("0.00");
+		BigDecimal frete = new BigDecimal("0.00");
+		BigDecimal custoTotal = new BigDecimal("0.00");
 		
 		int quantidadeFragil = 0;
 		int quantidadeEletronico = 0;
@@ -128,140 +125,145 @@ public class CompraService
 		//Cálculo do subtotal
 		for (ItemCompra item : carrinho.getItens()) {
 			BigDecimal precoItem = item.getProduto().getPreco();
-			precoItem = precoItem.multiply(BigDecimal.valueOf(item.getQuantidade()), mc);
+			precoItem = precoItem.multiply(BigDecimal.valueOf(item.getQuantidade()));
 			
 			if (item.getProduto().getTipo().equals(TipoProduto.ELETRONICO)) {
 				if (quantidadeEletronico >= 3 && quantidadeEletronico <= 4) {
-					precoItem = precoItem.multiply(DESCONTO_5, mc);
+					precoItem = precoItem.multiply(DESCONTO_5);
 				}
 				if (quantidadeEletronico >= 5 && quantidadeEletronico <= 7) {
-					precoItem = precoItem.multiply(DESCONTO_10, mc);
+					precoItem = precoItem.multiply(DESCONTO_10);
 				}
 				if (quantidadeEletronico >= 8) {
-					precoItem = precoItem.multiply(DESCONTO_15, mc);
+					precoItem = precoItem.multiply(DESCONTO_15);
 				}
 			}
 			if (item.getProduto().getTipo().equals(TipoProduto.ROUPA)) {
 				if (quantidadeRoupa >= 3 && quantidadeRoupa <= 4) {
-					precoItem = precoItem.multiply(DESCONTO_5, mc);
+					precoItem = precoItem.multiply(DESCONTO_5);
 				}
 				if (quantidadeRoupa >= 5 && quantidadeRoupa <= 7) {
-					precoItem = precoItem.multiply(DESCONTO_10, mc);
+					precoItem = precoItem.multiply(DESCONTO_10);
 				}
 				if (quantidadeRoupa >= 8) {
-					precoItem = precoItem.multiply(DESCONTO_15, mc);
+					precoItem = precoItem.multiply(DESCONTO_15);
 				}
 			}
 			if (item.getProduto().getTipo().equals(TipoProduto.ALIMENTO)) {
 				if (quantidadeAlimento >= 3 && quantidadeAlimento <= 4) {
-					precoItem = precoItem.multiply(DESCONTO_5, mc);
+					precoItem = precoItem.multiply(DESCONTO_5);
 				}
 				if (quantidadeAlimento >= 5 && quantidadeAlimento <= 7) {
-					precoItem = precoItem.multiply(DESCONTO_10, mc);
+					precoItem = precoItem.multiply(DESCONTO_10);
 				}
 				if (quantidadeAlimento >= 8) {
-					precoItem = precoItem.multiply(DESCONTO_15, mc);
+					precoItem = precoItem.multiply(DESCONTO_15);
 				}
 			}
 			if (item.getProduto().getTipo().equals(TipoProduto.LIVRO)) {
 				if (quantidadeLivro >= 3 && quantidadeLivro <= 4) {
-					precoItem = precoItem.multiply(DESCONTO_5, mc);
+					precoItem = precoItem.multiply(DESCONTO_5);
 				}
 				if (quantidadeLivro >= 5 && quantidadeLivro <= 7) {
-					precoItem = precoItem.multiply(DESCONTO_10, mc);
+					precoItem = precoItem.multiply(DESCONTO_10);
 				}
 				if (quantidadeLivro >= 8) {
-					precoItem = precoItem.multiply(DESCONTO_15, mc);
+					precoItem = precoItem.multiply(DESCONTO_15);
 				}
 			}
 			if (item.getProduto().getTipo().equals(TipoProduto.MOVEL)) {
 				if (quantidadeMovel >= 3 && quantidadeMovel <= 4) {
-					precoItem = precoItem.multiply(DESCONTO_5, mc);
+					precoItem = precoItem.multiply(DESCONTO_5);
 				}
 				if (quantidadeMovel >= 5 && quantidadeMovel <= 7) {
-					precoItem = precoItem.multiply(DESCONTO_10, mc);
+					precoItem = precoItem.multiply(DESCONTO_10);
 				}
 				if (quantidadeMovel >= 8) {
-					precoItem = precoItem.multiply(DESCONTO_15, mc);
+					precoItem = precoItem.multiply(DESCONTO_15);
 				}
 			}
-			subtotal = subtotal.add(precoItem, mc);
+			subtotal = subtotal.add(precoItem);
 		}
 		
+		subtotal = subtotal.setScale(2, RoundingMode.HALF_UP);
+		
 		//Desconto por valor do carrinho
-		if(subtotal.compareTo(new BigDecimal("1000")) == 1) {
-			subtotal = subtotal.multiply(DESCONTO_20, mc);
-		} else if(subtotal.compareTo(new BigDecimal("500")) == 1) {
-			subtotal = subtotal.multiply(DESCONTO_10, mc);
+		if(subtotal.compareTo(new BigDecimal("1000.00")) == 1) {
+			subtotal = subtotal.multiply(DESCONTO_20);
+		} else if(subtotal.compareTo(new BigDecimal("500.00")) == 1) {
+			subtotal = subtotal.multiply(DESCONTO_10);
 		}
 		
 		BigDecimal pesoTotal = BigDecimal.ZERO;
 		
 		//Cálculo do Peso Total
 		for (ItemCompra item : carrinho.getItens()) {
-			BigDecimal pesoCubico = BigDecimal.ZERO;
-			BigDecimal pesoTributavel = BigDecimal.ZERO;
+			BigDecimal pesoCubico = new BigDecimal("0.00");
+			BigDecimal pesoTributavel = new BigDecimal("0.00");
 			
-			pesoCubico = item.getProduto().getComprimento().multiply(item.getProduto().getLargura(), mc);
-			pesoCubico = pesoCubico.multiply(item.getProduto().getAltura(), mc);
-			pesoCubico = pesoCubico.divide(new BigDecimal("6000"), mc);
+			pesoCubico = item.getProduto().getComprimento().multiply(item.getProduto().getLargura()).setScale(2);
+			pesoCubico = pesoCubico.multiply(item.getProduto().getAltura()).setScale(2);
+			pesoCubico = pesoCubico.divide(new BigDecimal("6000.00"), RoundingMode.HALF_UP).setScale(2);
 			
-			pesoTributavel = pesoCubico.max(item.getProduto().getPesoFisico());
-			pesoTributavel = pesoTributavel.multiply(BigDecimal.valueOf(item.getQuantidade()), mc);
+			pesoTributavel = pesoCubico.max(item.getProduto().getPesoFisico()).setScale(2);
+			pesoTributavel = pesoTributavel.multiply(BigDecimal.valueOf(item.getQuantidade()).setScale(2));
 			
-			pesoTotal = pesoTotal.add(pesoTributavel, mc);
+			pesoTotal = pesoTotal.add(pesoTributavel).setScale(2);
 		}
 		
 		//Taxa de manuseio especial
-		frete = frete.add(new BigDecimal("5").multiply(BigDecimal.valueOf(quantidadeFragil), mc), mc);
+		frete = frete.add(new BigDecimal("5.00").multiply(BigDecimal.valueOf(quantidadeFragil).setScale(2)));
 		
 		//Cálculo do frete por peso
 		if (pesoTotal.compareTo(new BigDecimal("5.00")) == 1) {
-			frete = frete.add(new BigDecimal("12.00"), mc);
+			frete = frete.add(new BigDecimal("12.00"));
 			if (pesoTotal.compareTo(new BigDecimal("10.00")) != 1) {
-				frete = frete.add(pesoTotal.multiply(new BigDecimal("2.00"), mc), mc);
+				frete = frete.add(pesoTotal.multiply(new BigDecimal("2.00")));
 				
 			} else if (pesoTotal.compareTo(new BigDecimal("50.00")) != 1) {
-				frete = frete.add(pesoTotal.multiply(new BigDecimal("4.00"), mc), mc);
+				frete = frete.add(pesoTotal.multiply(new BigDecimal("4.00")));
 				
 			} else {
-				frete = frete.add(pesoTotal.multiply(new BigDecimal("7.00"), mc), mc);
+				frete = frete.add(pesoTotal.multiply(new BigDecimal("7.00")));
 			}
 		}
 		
 		//Fator da região
 		if (regiao.equals(Regiao.SUDESTE)) {
-			frete = frete.multiply(new BigDecimal("1", mc));
+			frete = frete.multiply(new BigDecimal("1.00"));
 		}
 		if (regiao.equals(Regiao.SUL)) {
-			frete = frete.multiply(new BigDecimal("1.05", mc));
+			frete = frete.multiply(new BigDecimal("1.05"));
 		}
 		if (regiao.equals(Regiao.NORDESTE)) {
-			frete = frete.multiply(new BigDecimal("1.10", mc));
+			frete = frete.multiply(new BigDecimal("1.10"));
 		}
 		if (regiao.equals(Regiao.CENTRO_OESTE)) {
-			frete = frete.multiply(new BigDecimal("1.20", mc));
+			frete = frete.multiply(new BigDecimal("1.20"));
 		}
 		if (regiao.equals(Regiao.NORTE)) {
-			frete = frete.multiply(new BigDecimal("1.30", mc));
+			frete = frete.multiply(new BigDecimal("1.30"));
 		}
 		
 		//Benefício do cliente
 		if (tipoCliente.equals(TipoCliente.OURO)) {
-			frete = frete.multiply(BigDecimal.ZERO, mc);
+			frete = frete.multiply(new BigDecimal("0.00"));
 		}
 		if (tipoCliente.equals(TipoCliente.PRATA)) {
-			frete = frete.multiply(new BigDecimal("0.50", mc));
+			frete = frete.multiply(new BigDecimal("0.50"));
 		}
 		if (tipoCliente.equals(TipoCliente.BRONZE)) {
-			frete = frete.multiply(new BigDecimal("1", mc));
+			frete = frete.multiply(new BigDecimal("1.00"));
 		}
 		
-		System.out.println("Subtotal: " + subtotal);
-		System.out.println("Frete: " + frete);
+		frete = frete.setScale(2);
 		
 		//Cálculo do custo total
 		custoTotal = subtotal.add(frete);
+		custoTotal = custoTotal.setScale(2, RoundingMode.HALF_UP);
+		
+		System.out.println("Subtotal: " + subtotal);
+		System.out.println("Frete: " + frete);
 		System.out.println("Custo total: " + custoTotal);
 		
 		return custoTotal;
