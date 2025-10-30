@@ -21,7 +21,7 @@
 
 ### Pré-requisitos
 
-- **Java 21 LTS** ou superior
+- **Java 17** ou superior
 - **Maven** (ou usar o wrapper incluído)
 
 ### Comandos Maven
@@ -112,17 +112,13 @@ Após executar os testes, você verá um resumo como:
 3. Navegue até a classe `CompraService` para ver a cobertura detalhada:
    - Clique em `ecommerce.service`
    - Clique em `CompraService`
-   - Veja os métodos: `finalizarCompra` e `calcularCustoTotal`
+   - Clique no método: `calcularCustoTotal`
 
 ### Métricas de Cobertura Esperadas
 
 **Para o método `calcularCustoTotal`:**
 - **Cobertura de Instruções**: 100%
 - **Cobertura de Branches (Arestas)**: 100%
-
-**Para o projeto completo:**
-- **Cobertura de Linhas**: ≥ 95%
-- **Cobertura de Branches**: ≥ 95%
 
 ### Interpretar o Relatório JaCoCo
 
