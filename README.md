@@ -1,9 +1,19 @@
 # Projeto Unidade 2 - Testes de Software I
 
 **Instituição**: UFRN  
-**Disciplina**: Teste de Software I    
+**Disciplina**: Teste de Software I  
 **Professor**: Eiji Adachi  
-**Alunos**: Antonio Higino Bisneto Leite Medeiros, Nathan Medeiros Clemente  
+**Alunos**: Antonio Higino Bisneto Leite Medeiros, Nathan Medeiros Clemente
+
+---
+
+## Sumário
+
+- [Como Executar o Projeto](#como-executar-o-projeto)
+- [Como Executar os Testes](#como-executar-os-testes)
+- [Como Verificar a Cobertura dos Testes](#como-verificar-a-cobertura-dos-testes)
+- [Documentação](#documentação)
+- [Licença](#licença)
 
 ---
 
@@ -11,17 +21,18 @@
 
 ### Pré-requisitos
 
-- **Java 17**
+- **Java 21 LTS** ou superior
 - **Maven** (ou usar o wrapper incluído)
+
+### Comandos Maven
+
+- **Maven instalado**: Use `mvn`
+- **Wrapper incluído**: Use `.\mvnw.cmd` (Windows) ou `./mvnw` (Linux/Mac)
 
 ### Passos para Execução
 
-- Para usar:
-    - Maven instalado: **mvn**
-    - Wrapper incluso: **.\mvnw.cmd**
-
-1. **Clone o repositório** (ou extraia o arquivo .zip):
-   ```powrshell (ou terminal equivalente)
+1. **Navegue até o diretório do projeto**:
+   ```powershell
    cd projetoUni2
    ```
 
@@ -48,11 +59,14 @@
 ### Executar Classe de Teste Específica
 
 ```powershell
-# Testes do CompraService (100% branch coverage)
+# Testes do CompraService - Casos gerais
 .\mvnw.cmd test -Dtest=CompraServiceTest
 
-# Testes do CompraService (Valores limites)
-.\mvnw.cmd test -Dtest=CompraServiceTestLimites
+# Testes do CompraService - Partições
+.\mvnw.cmd test -Dtest=CompraServiceParticoesTest
+
+# Testes do CompraService - Valores limites
+.\mvnw.cmd test -Dtest=CompraServiceLimitesTest
 
 # Testes de ItemCompra
 .\mvnw.cmd test -Dtest=ItemCompraTest
@@ -72,7 +86,7 @@
 Após executar os testes, você verá um resumo como:
 
 ```
-[INFO] Tests run: 51, Failures: 0, Errors: 0, Skipped: 0
+[INFO] Tests run: XX, Failures: 0, Errors: 0, Skipped: 0
 [INFO] BUILD SUCCESS
 ```
 
@@ -95,15 +109,20 @@ Após executar os testes, você verá um resumo como:
 
 2. Abra o arquivo `index.html` em um navegador
 
-3. Navegue até a classe `CompraService` para ver a cobertura detalhada
-    1. ecommerce.service
-    2. compraService
-    3. calcularCustoTotal(CarrinhoDeCompras, Regiao, TipoCliente)  
+3. Navegue até a classe `CompraService` para ver a cobertura detalhada:
+   - Clique em `ecommerce.service`
+   - Clique em `CompraService`
+   - Veja os métodos: `finalizarCompra` e `calcularCustoTotal`
 
-### Métricas de Cobertura Esperadas para o método `calcularCustoTotal`
+### Métricas de Cobertura Esperadas
 
+**Para o método `calcularCustoTotal`:**
 - **Cobertura de Instruções**: 100%
 - **Cobertura de Branches (Arestas)**: 100%
+
+**Para o projeto completo:**
+- **Cobertura de Linhas**: ≥ 95%
+- **Cobertura de Branches**: ≥ 95%
 
 ### Interpretar o Relatório JaCoCo
 
@@ -131,10 +150,28 @@ e os respectivos valores limites foram utilizados como entradas inválidas para 
    - setAltura (0, -0.99)
 
  ### Planilha e Grafo
+
 Para os testes relacionados a `calcularCustoTotal`, o projeto de casos de teste, valores limites, partições  
 encontradas, além de outras informações relevantes estão presentes no arquivo **`Planilha.xlsx`**.
 
-O grafo de fluxo de fluxo de controle (GFC) está presente no arquivo **`Grafo.png`**.
+O grafo de fluxo de controle (CFG) está presente no arquivo **`Grafo.png`**.
+
+### Complexidade Ciclomática
+
+**Fórmula:** V(G) = E - N + 2P
+
+Onde:
+- **M** (ou V(G)) = Complexidade ciclomática
+- **E** = Quantidade de arestas (setas) = 19
+- **N** = Quantidade de nós = 9
+- **P** = Quantidade de componentes conectados = 1
+
+**Cálculo:**  
+V(G) = 19 - 9 + 2(1) = **12**
+
+**Interpretação:**
+- Complexidade moderada
+- Requer no mínimo **12 casos de teste independentes** para cobertura completa de caminhos
 
 ---
 
