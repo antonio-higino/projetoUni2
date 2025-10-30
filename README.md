@@ -132,7 +132,7 @@ e os respectivos valores limites foram utilizados como entradas inválidas para 
 
  ### Planilha e Grafo
 Para os testes relacionados a `calcularCustoTotal`, o projeto de casos de teste, valores limites, partições  
-encontradas, além de outras informações relevantes estão presentes no arquivo **`Planilha.xlsl`**.
+encontradas, além de outras informações relevantes estão presentes no arquivo **`Planilha.xlsx`**.
 
 O grafo de fluxo de fluxo de controle (GFC) está presente no arquivo **`Grafo.png`**.
 
