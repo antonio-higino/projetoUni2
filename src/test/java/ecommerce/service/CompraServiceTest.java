@@ -191,17 +191,5 @@ public class CompraServiceTest {
 		
 		// Assert
 		assertThat(custoTotal).as("Custo Total da Compra").isEqualByComparingTo(custoEsperado);
-
-		/*// Ao trabalhar com BigDecimal, evite comparar com equals() -- método que o
-		// assertEquals usa,
-		// pois ela leva em conta escala (ex: 10.0 != 10.00).
-		// Use o método compareTo().
-		BigDecimal esperado = new BigDecimal("0.00");
-		assertEquals(0, custoTotal.compareTo(esperado), "Valor calculado incorreto: " + custoTotal);
-
-		// Uma alternativa mais elegante, é usar a lib AssertJ
-		// O método isEqualByComparingTo não leva em conta escala
-		// e não precisa instanciar um BigDecimal para fazer a comparação
-		assertThat(custoTotal).as("Custo Total da Compra").isEqualByComparingTo(custoEsperado);*/
 	}
 }
