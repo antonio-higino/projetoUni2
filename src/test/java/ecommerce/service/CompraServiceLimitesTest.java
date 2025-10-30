@@ -16,7 +16,7 @@ import ecommerce.entity.Regiao;
 import ecommerce.entity.TipoCliente;
 import ecommerce.entity.TipoProduto;
 
-public class CompraServiceTestLimites {
+public class CompraServiceLimitesTest {
 
 	@ParameterizedTest
 	@CsvSource({
