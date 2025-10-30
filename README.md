@@ -115,10 +115,26 @@ Após executar os testes, você verá um resumo como:
 
 ## Documentação  
 
-O projeto de casos de teste, valores limites, partições encontradas, além de outras informações  
-relevantes estão presentes no arquivo `Planilha.xlsl`.
+ ### Acerca dos testes de validação e robustez, cobrindo entradas inválidas
 
-O grafo de fluxo de fluxo de controle (GFC) está presente no arquivo `Grafo.png`.
+Nas classes `ItemCompra` e `Produto` foram feitas alterações nos métodos **`setAtributo`** descritos abaixo,  
+e os respectivos valores limites foram utilizados como entradas inválidas para testar o lançamento de exceções:
+- ItemCompra:  
+   - setId (0,-1)
+   - setQuantidade (0,-1)
+- Produto:
+   - setId (0,-1)
+   - setPreco (-0.99, -1)
+   - setPesoFisico (0, -0.99)
+   - setComprimento (0, -0.99)
+   - setLargura (0, -0.99)
+   - setAltura (0, -0.99)
+
+ ### Planilha e Grafo
+Para os testes relacionados a `calcularCustoTotal`, o projeto de casos de teste, valores limites, partições  
+encontradas, além de outras informações relevantes estão presentes no arquivo **`Planilha.xlsl`**.
+
+O grafo de fluxo de fluxo de controle (GFC) está presente no arquivo **`Grafo.png`**.
 
 ---
 
