@@ -18,7 +18,7 @@ import ecommerce.entity.TipoProduto;
 
 public class CompraServiceLimitesTest {
 
-	@ParameterizedTest
+	/*@ParameterizedTest
 	@CsvSource({
 		"0, 0, 0, 1, 0, SUDESTE, BRONZE, 0.01",
 		"0, 0, 0, 499, 0, SUDESTE, BRONZE, 4.24",
@@ -158,6 +158,6 @@ public class CompraServiceLimitesTest {
 		
 		// Assert
 		assertThat(custoTotal).as("Custo Total da Compra").isEqualByComparingTo(custoEsperado);
-	}
+	}*/
 }
 

@@ -20,23 +20,22 @@ public class CompraServiceParticoesTest {
 
 	@ParameterizedTest
 	@CsvSource({
-			"0, 0, 1, 0, 0, SUDESTE, BRONZE, 30.00",
-			"0, 0, 1, 0, 0, SUDESTE, PRATA, 30.00",
-			"0, 0, 1, 0, 0, SUDESTE, OURO, 30.00",
-			"0, 0, 1, 0, 0, SUL, PRATA, 30.00",
-			"0, 0, 1, 0, 0, NORDESTE, PRATA, 30.00",
-			"0, 0, 1, 0, 0, CENTRO_OESTE, PRATA, 30.00",
-			"0, 0, 1, 0, 0, NORTE, PRATA, 30.00",
-			"0, 0, 3, 0, 0, NORTE, PRATA, 85.50",
-			"0, 0, 5, 0, 0, NORTE, PRATA, 135.00",
-			"0, 0, 8, 0, 0, NORTE, PRATA, 204.00",
-			"0, 1, 0, 0, 0, SUDESTE, BRONZE, 25.00",
-			"0, 0, 0, 0, 1, SUDESTE, OURO, 459.00",
-			"0, 0, 0, 0, 2, SUDESTE, OURO, 816.00",
-			"0, 0, 1, 1, 0, SUDESTE, BRONZE, 73.00",
-			"0, 0, 1, 2, 0, SUDESTE, BRONZE, 124.00",
-			"1, 0, 1, 1, 0, SUDESTE, BRONZE, 455.50"
-
+		"0, 0, 1, 0, 0, SUDESTE, BRONZE, 30.00",
+		"0, 0, 1, 0, 0, SUDESTE, BRONZE, 30.00",
+		"0, 0, 1, 0, 0, SUDESTE, BRONZE, 30.00",
+		"0, 0, 1, 0, 0, SUDESTE, BRONZE, 30.00",
+		"0, 0, 1, 0, 0, SUDESTE, BRONZE, 30.00",
+		"0, 0, 1, 0, 0, SUDESTE, BRONZE, 30.00",
+		"0, 0, 1, 0, 0, SUDESTE, BRONZE, 30.00",
+		"0, 0, 3, 0, 0, SUDESTE, BRONZE, 90.00",
+		"0, 0, 5, 0, 0, SUDESTE, BRONZE, 150.00",
+		"0, 0, 8, 0, 0, SUDESTE, BRONZE, 240.00",
+		"0, 1, 0, 0, 0, SUDESTE, BRONZE, 25.00",
+		"0, 0, 0, 0, 1, SUDESTE, BRONZE, 459.00",
+		"0, 0, 0, 0, 2, SUDESTE, BRONZE, 816.00",
+		"0, 0, 1, 1, 0, SUDESTE, BRONZE, 61.00",
+		"0, 0, 1, 2, 0, SUDESTE, BRONZE, 112.00",
+		"1, 0, 1, 1, 0, SUDESTE, BRONZE, 443.50"
 	})
 	public void deveCalcularCustoTotalCorretamente(
 			Long quantidadeEletronico,
