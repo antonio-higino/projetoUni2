@@ -1,6 +1,6 @@
 package ecommerce.service;
 
-import static org.assertj.core.api.Assertions.assertThat;
+/*import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import ecommerce.entity.ItemCompra;
 import ecommerce.entity.Produto;
 import ecommerce.entity.Regiao;
 import ecommerce.entity.TipoCliente;
-import ecommerce.entity.TipoProduto;
+import ecommerce.entity.TipoProduto;*/
 
 public class CompraServiceLimitesTest {
 

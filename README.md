@@ -128,6 +128,35 @@ Após executar os testes, você verá um resumo como:
 
 ---
 
+## Testes de Mutação
+
+### Gerar Relatório de Mutação
+
+```powershell
+.\mvnw.cmd test-compile org.pitest:pitest-maven:mutationCoverage
+```
+
+### Visualizar o Relatório
+
+1. Após executar o comando acima, o relatório será gerado em:
+   ```
+   target/pit-reports/index.html
+   ```
+
+2. Abra o arquivo `index.html` em um navegador
+
+3. Navegue até a classe `CompraService` para ver a cobertura detalhada:
+   - Clique em `ecommerce.service`
+   - Clique em `CompraService.java`
+
+### Métricas Esperadas
+
+**Para a classe `CompraService`:**
+- **Mutation Coverage**: 53% (8/15, 100% nos 8 mutantes do método **calcularCustoTotal**)
+- **Test Strength**: 100% (8/8)
+
+---
+
 ## Documentação  
 
  ### Acerca dos testes de validação e robustez, cobrindo entradas inválidas
