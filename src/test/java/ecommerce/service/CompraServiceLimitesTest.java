@@ -1,6 +1,6 @@
 package ecommerce.service;
 
-/*import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -14,37 +14,37 @@ import ecommerce.entity.ItemCompra;
 import ecommerce.entity.Produto;
 import ecommerce.entity.Regiao;
 import ecommerce.entity.TipoCliente;
-import ecommerce.entity.TipoProduto;*/
+import ecommerce.entity.TipoProduto;
 
 public class CompraServiceLimitesTest {
 
-	/*@ParameterizedTest
+	@ParameterizedTest
 	@CsvSource({
 		"0, 0, 0, 1, 0, SUDESTE, BRONZE, 0.01",
-		"0, 0, 0, 499, 0, SUDESTE, BRONZE, 4.24",
-		"0, 0, 0, 500, 0, SUDESTE, BRONZE, 4.25",
-		"0, 0, 0, 501, 0, SUDESTE, BRONZE, 26.28",
-		"0, 0, 0, 999, 0, SUDESTE, BRONZE, 40.47",
-		"0, 0, 0, 1000, 0, SUDESTE, BRONZE, 40.50",
-		"0, 0, 0, 1001, 0, SUDESTE, BRONZE, 60.55",
-		"0, 0, 0, 49999, 0, SUDESTE, BRONZE, 3936.92",
-		"0, 0, 0, 50000, 0, SUDESTE, BRONZE, 3937.00",
-		"0, 0, 0, 50001, 0, SUDESTE, BRONZE, 3937.08",
-		"0, 0, 0, 58822, 0, SUDESTE, OURO, 499.99",
-		"2, 2, 2, 0, 2, SUDESTE, OURO, 500.00",
-		"2, 2, 2, 1, 2, SUDESTE, OURO, 450.01",
-		"4, 4, 4, 5881, 4, SUDESTE, OURO, 899.99",
-		"4, 4, 4, 5882, 4, SUDESTE, OURO, 900.00",
-		"4, 4, 4, 5883, 4, SUDESTE, OURO, 800.01",
+		"0, 0, 0, 499, 0, SUDESTE, BRONZE, 4.99",
+		"0, 0, 0, 500, 0, SUDESTE, BRONZE, 5.00",
+		"0, 0, 0, 501, 0, SUDESTE, BRONZE, 15.03",
+		"0, 0, 0, 999, 0, SUDESTE, BRONZE, 29.97",
+		"0, 0, 0, 1000, 0, SUDESTE, BRONZE, 30.00",
+		"0, 0, 0, 1001, 0, SUDESTE, BRONZE, 50.05",
+		"0, 0, 0, 49999, 0, SUDESTE, BRONZE, 3999.92",
+		"0, 0, 0, 50000, 0, SUDESTE, BRONZE, 3950.00",
+		"0, 0, 0, 50001, 0, SUDESTE, BRONZE, 3950.08",
+		"0, 0, 0, 58822, 0, SUDESTE, OURO, 4646.94",
+		"2, 2, 2, 0, 2, SUDESTE, OURO, 481.20",
+		"2, 2, 2, 1, 2, SUDESTE, OURO, 481.23",
+		"4, 4, 4, 5881, 4, SUDESTE, OURO, 1377.12",
+		"4, 4, 4, 5882, 4, SUDESTE, OURO, 1377.20",
+		"4, 4, 4, 5883, 4, SUDESTE, OURO, 1377.27",
 		"0, 0, 1, 0, 0, SUDESTE, BRONZE, 30.00",
 		"0, 0, 2, 0, 0, SUDESTE, BRONZE, 60.00",
-		"0, 0, 3, 0, 0, SUDESTE, BRONZE, 85.50",
-		"0, 0, 4, 0, 0, SUDESTE, BRONZE, 114.00",
-		"0, 0, 5, 0, 0, SUDESTE, BRONZE, 135.00",
-		"0, 0, 6, 0, 0, SUDESTE, BRONZE, 162.00",
-		"0, 0, 7, 0, 0, SUDESTE, BRONZE, 189.00",
-		"0, 0, 8, 0, 0, SUDESTE, BRONZE, 204.00",
-		"0, 0, 9, 0, 0, SUDESTE, BRONZE, 229.50"
+		"0, 0, 3, 0, 0, SUDESTE, BRONZE, 90.00",
+		"0, 0, 4, 0, 0, SUDESTE, BRONZE, 120.00",
+		"0, 0, 5, 0, 0, SUDESTE, BRONZE, 150.00",
+		"0, 0, 6, 0, 0, SUDESTE, BRONZE, 180.00",
+		"0, 0, 7, 0, 0, SUDESTE, BRONZE, 210.00",
+		"0, 0, 8, 0, 0, SUDESTE, BRONZE, 240.00",
+		"0, 0, 9, 0, 0, SUDESTE, BRONZE, 270.00"
 	})
 	public void deveTestarLimitesCalcularCustoTotal(
 			Long quantidadeEletronico, 
@@ -158,6 +158,6 @@ public class CompraServiceLimitesTest {
 		
 		// Assert
 		assertThat(custoTotal).as("Custo Total da Compra").isEqualByComparingTo(custoEsperado);
-	}*/
+	}
 }
 
