@@ -1,4 +1,4 @@
-# Projeto Unidade 2 - Testes de Software I
+# Projeto eCommerce - Testes de Software I
 
 **Instituição**: UFRN  
 **Disciplina**: Teste de Software I  
@@ -152,8 +152,23 @@ Após executar os testes, você verá um resumo como:
 ### Métricas Esperadas
 
 **Para a classe `CompraService`:**
-- **Mutation Coverage**: 53% (8/15, 100% nos 8 mutantes do método **calcularCustoTotal**)
+- **Line Coverage**: 71% (44/62)
+- **Mutation Coverage**: 53% (8/15)
 - **Test Strength**: 100% (8/8)
+
+### Interpretar o Relatório PIT
+
+- **Linha Verde**: Testes cobrem essa linha
+- **Linha Verde Mais Escura**: Mutação foi realizada naquela linha e mutante foi morto
+- **Vermelho**: Nenhum teste cobre essa linha
+- **Vermelho Mais Escuro**: Mutação foi realizada naquela linha e mutante não foi morto
+
+### Resultados e Estratégia
+
+- Como é possível observar no relatório seguindo as instruções descritas acima, **todos os mutantes** (8 no total) 
+gerados a partir de mutações no método `calcularCustoTotal` foram mortos, **atingindo a meta de 100%**
+
+- Não foram necessárias alterações no código para atingir a meta
 
 ---
 
