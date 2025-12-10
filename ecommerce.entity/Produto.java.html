@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Produto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">antonioHigino-nathanClemente</a> &gt; <a href="index.source.html" class="el_package">ecommerce.entity</a> &gt; <span class="el_source">Produto.java</span></div><h1>Produto.java</h1><pre class="source lang-java linenums">package ecommerce.entity;
+
+import java.math.BigDecimal;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
+public class Produto
+{
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	private String nome;
+
+	private String descricao;
+
+	/** Preço unitário em reais (R$). */
+	private BigDecimal preco;
+
+	/** Peso físico em quilogramas (kg). */
+	private BigDecimal pesoFisico;
+
+	/** Dimensões em centímetros (cm). */
+	private BigDecimal comprimento;
+	private BigDecimal largura;
+	private BigDecimal altura;
+
+	/** Indica se o produto é frágil. */
+	private Boolean fragil;
+
+	@Enumerated(EnumType.STRING)
+	private TipoProduto tipo;
+
+	public Produto()
+<span class="fc" id="L42">	{</span>
+<span class="fc" id="L43">	}</span>
+
+	public Produto(Long id, String nome, String descricao, BigDecimal preco, BigDecimal pesoFisico,
+			BigDecimal comprimento, BigDecimal largura, BigDecimal altura, Boolean fragil, TipoProduto tipo)
+<span class="nc" id="L47">	{</span>
+<span class="nc" id="L48">		this.id = id;</span>
+<span class="nc" id="L49">		this.nome = nome;</span>
+<span class="nc" id="L50">		this.descricao = descricao;</span>
+<span class="nc" id="L51">		this.preco = preco;</span>
+<span class="nc" id="L52">		this.pesoFisico = pesoFisico;</span>
+<span class="nc" id="L53">		this.comprimento = comprimento;</span>
+<span class="nc" id="L54">		this.largura = largura;</span>
+<span class="nc" id="L55">		this.altura = altura;</span>
+<span class="nc" id="L56">		this.fragil = fragil;</span>
+<span class="nc" id="L57">		this.tipo = tipo;</span>
+<span class="nc" id="L58">	}</span>
+
+	// Getters e Setters
+	public Long getId()
+	{
+<span class="fc" id="L63">		return id;</span>
+	}
+
+	public void setId(Long id) throws IllegalArgumentException
+	{
+<span class="fc bfc" id="L68" title="All 2 branches covered.">		if(id &gt;= 1) {</span>
+<span class="fc" id="L69">			this.id = id;</span>
+		} else {
+<span class="fc" id="L71">			throw new IllegalArgumentException(&quot;Id inválido&quot;);</span>
+		}
+<span class="fc" id="L73">	}</span>
+
+	public String getNome()
+	{
+<span class="nc" id="L77">		return nome;</span>
+	}
+
+	public void setNome(String nome)
+	{
+<span class="fc" id="L82">		this.nome = nome;</span>
+<span class="fc" id="L83">	}</span>
+
+	public String getDescricao()
+	{
+<span class="nc" id="L87">		return descricao;</span>
+	}
+
+	public void setDescricao(String descricao)
+	{
+<span class="nc" id="L92">		this.descricao = descricao;</span>
+<span class="nc" id="L93">	}</span>
+
+	public BigDecimal getPreco()
+	{
+<span class="fc" id="L97">		return preco;</span>
+	}
+
+	public void setPreco(BigDecimal preco) throws IllegalArgumentException
+	{
+<span class="fc bfc" id="L102" title="All 2 branches covered.">		if(preco.compareTo(BigDecimal.ZERO) != -1) {</span>
+<span class="fc" id="L103">			this.preco = preco;</span>
+		} else {
+<span class="fc" id="L105">			throw new IllegalArgumentException(&quot;Preço inválido&quot;);</span>
+		}
+<span class="fc" id="L107">	}</span>
+
+	public BigDecimal getPesoFisico()
+	{
+<span class="fc" id="L111">		return pesoFisico;</span>
+	}
+
+	public void setPesoFisico(BigDecimal pesoFisico) throws IllegalArgumentException
+	{
+<span class="fc bfc" id="L116" title="All 2 branches covered.">		if(pesoFisico.compareTo(BigDecimal.ZERO) == 1) {</span>
+<span class="fc" id="L117">			this.pesoFisico = pesoFisico;</span>
+		} else {
+<span class="fc" id="L119">			throw new IllegalArgumentException(&quot;Peso físico inválido&quot;);</span>
+		}
+<span class="fc" id="L121">	}</span>
+
+	public BigDecimal getComprimento()
+	{
+<span class="nc" id="L125">		return comprimento;</span>
+	}
+
+	public void setComprimento(BigDecimal comprimento) throws IllegalArgumentException
+	{
+<span class="fc bfc" id="L130" title="All 2 branches covered.">		if(comprimento.compareTo(BigDecimal.ZERO) == 1) {</span>
+<span class="fc" id="L131">			this.comprimento = comprimento;</span>
+		} else {
+<span class="fc" id="L133">			throw new IllegalArgumentException(&quot;Comprimento inválido&quot;);</span>
+		}
+<span class="fc" id="L135">	}</span>
+
+	public BigDecimal getLargura()
+	{
+<span class="nc" id="L139">		return largura;</span>
+	}
+
+	public void setLargura(BigDecimal largura) throws IllegalArgumentException
+	{
+<span class="fc bfc" id="L144" title="All 2 branches covered.">		if(largura.compareTo(BigDecimal.ZERO) == 1) {</span>
+<span class="fc" id="L145">			this.largura = largura;</span>
+		} else {
+<span class="fc" id="L147">			throw new IllegalArgumentException(&quot;Largura inválida&quot;);</span>
+		}
+<span class="fc" id="L149">	}</span>
+
+	public BigDecimal getAltura()
+	{
+<span class="nc" id="L153">		return altura;</span>
+	}
+
+	public void setAltura(BigDecimal altura) throws IllegalArgumentException
+	{
+<span class="fc bfc" id="L158" title="All 2 branches covered.">		if(altura.compareTo(BigDecimal.ZERO) == 1) {</span>
+<span class="fc" id="L159">			this.altura = altura;</span>
+		} else {
+<span class="fc" id="L161">			throw new IllegalArgumentException(&quot;Altura inválida&quot;);</span>
+		}
+<span class="fc" id="L163">	}</span>
+
+	public Boolean isFragil()
+	{
+<span class="fc" id="L167">		return fragil;</span>
+	}
+
+	public void setFragil(Boolean fragil)
+	{
+<span class="fc" id="L172">		this.fragil = fragil;</span>
+<span class="fc" id="L173">	}</span>
+
+	public TipoProduto getTipo()
+	{
+<span class="nc" id="L177">		return tipo;</span>
+	}
+
+	public void setTipo(TipoProduto tipo)
+	{
+<span class="fc" id="L182">		this.tipo = tipo;</span>
+<span class="fc" id="L183">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

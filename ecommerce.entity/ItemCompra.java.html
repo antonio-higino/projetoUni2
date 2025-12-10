@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ItemCompra.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">antonioHigino-nathanClemente</a> &gt; <a href="index.source.html" class="el_package">ecommerce.entity</a> &gt; <span class="el_source">ItemCompra.java</span></div><h1>ItemCompra.java</h1><pre class="source lang-java linenums">package ecommerce.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+@Entity
+public class ItemCompra
+{
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@ManyToOne // Vários itens podem se referir ao mesmo produto
+	@JoinColumn(name = &quot;produto_id&quot;)
+	private Produto produto;
+
+	private Long quantidade;
+
+	public ItemCompra()
+<span class="fc" id="L25">	{</span>
+<span class="fc" id="L26">	}</span>
+
+	public ItemCompra(Long id, Produto produto, Long quantidade)
+<span class="nc" id="L29">	{</span>
+<span class="nc" id="L30">		this.id = id;</span>
+<span class="nc" id="L31">		this.produto = produto;</span>
+<span class="nc" id="L32">		this.quantidade = quantidade;</span>
+<span class="nc" id="L33">	}</span>
+
+	// Getters e Setters
+	public Long getId()
+	{
+<span class="nc" id="L38">		return id;</span>
+	}
+
+	public void setId(Long id) throws IllegalArgumentException
+	{
+<span class="fc bfc" id="L43" title="All 2 branches covered.">		if(id &gt;= 1) {</span>
+<span class="fc" id="L44">			this.id = id;</span>
+		} else {
+<span class="fc" id="L46">			throw new IllegalArgumentException(&quot;Id inválido&quot;);</span>
+		}
+<span class="fc" id="L48">	}</span>
+
+	public Produto getProduto()
+	{
+<span class="fc" id="L52">		return produto;</span>
+	}
+
+	public void setProduto(Produto produto)
+	{
+<span class="fc" id="L57">		this.produto = produto;</span>
+<span class="fc" id="L58">	}</span>
+
+	public Long getQuantidade()
+	{
+<span class="fc" id="L62">		return quantidade;</span>
+	}
+
+	public void setQuantidade(Long quantidade) throws IllegalArgumentException
+	{
+<span class="fc bfc" id="L67" title="All 2 branches covered.">		if(quantidade &gt;= 1) {</span>
+<span class="fc" id="L68">			this.quantidade = quantidade;</span>
+		} else {
+<span class="fc" id="L70">			throw new IllegalArgumentException(&quot;Quantidade inválida&quot;);</span>
+		}
+<span class="fc" id="L72">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

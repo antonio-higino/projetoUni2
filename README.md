@@ -68,6 +68,12 @@
 # Testes do CompraService - Valores limites
 .\mvnw.cmd test -Dtest=CompraServiceLimitesTest
 
+# Testes do finalizarCompra - Cenário 1 (Fakes para externos + Mocks para serviços)
+.\mvnw.cmd test -Dtest=CompraServiceFinalizarCompraCenario1Test
+
+# Testes do finalizarCompra - Cenário 2 (Mocks para externos + Fakes para serviços)
+.\mvnw.cmd test -Dtest=CompraServiceFinalizarCompraCenario2Test
+
 # Testes de ItemCompra
 .\mvnw.cmd test -Dtest=ItemCompraTest
 
@@ -119,6 +125,14 @@ Após executar os testes, você verá um resumo como:
 **Para o método `calcularCustoTotal`:**
 - **Cobertura de Instruções**: 100%
 - **Cobertura de Branches (Arestas)**: 100%
+- **Mutation Coverage**: 100% (8 mutantes mortos de 8 gerados)
+
+**Para o método `finalizarCompra`:**
+- **Cobertura de Instruções**: 100% (103/103)
+- **Cobertura de Branches (Decisões)**: 100% (6/6)
+- **Cobertura de Linhas**: 100% (18/18)
+- **Test Doubles**: 2 cenários com estratégias invertidas
+- **Total de Testes**: 8 (4 por cenário)
 
 ### Interpretar o Relatório JaCoCo
 
@@ -169,6 +183,100 @@ Após executar os testes, você verá um resumo como:
 gerados a partir de mutações no método `calcularCustoTotal` foram mortos, **atingindo a meta de 100%**
 
 - Não foram necessárias alterações no código para atingir a meta
+
+---
+
+## Testes do Método finalizarCompra()
+
+### Estratégia de Test Doubles
+
+Para testar o método `finalizarCompra()`, foram implementados **dois cenários** com estratégias **invertidas** de test doubles, garantindo cobertura completa de decisões (100% branch coverage).
+
+### Cenário 1: Fakes para Externos + Mocks para Internos
+
+**Arquivos:**
+- Classe de Teste: `CompraServiceFinalizarCompraCenario1Test.java`
+- Fakes implementados:
+  - `EstoqueSimulado` (implementa `IEstoqueExternal`)
+  - `PagamentoSimulado` (implementa `IPagamentoExternal`)
+
+**Test Doubles utilizados:**
+- **Fakes** para dependências **externas**:
+  - `EstoqueSimulado`: Simula API externa de estoque com estado interno (HashMap)
+  - `PagamentoSimulado`: Simula API externa de pagamento com rastreamento de transações
+- **Mocks** (Mockito) para serviços **internos**:
+  - `ClienteService`
+  - `CarrinhoDeComprasService`
+
+**Executar:**
+```powershell
+.\mvnw.cmd test -Dtest=CompraServiceFinalizarCompraCenario1Test
+```
+
+### Cenário 2: Mocks para Externos + Fakes para Internos
+
+**Arquivos:**
+- Classe de Teste: `CompraServiceFinalizarCompraCenario2Test.java`
+- Fakes implementados:
+  - `ClienteServiceFake` (estende `ClienteService`)
+  - `CarrinhoDeComprasServiceFake` (estende `CarrinhoDeComprasService`)
+
+**Test Doubles utilizados:**
+- **Mocks** (Mockito) para dependências **externas**:
+  - `IEstoqueExternal`
+  - `IPagamentoExternal`
+- **Fakes** para serviços **internos**:
+  - `ClienteServiceFake`: Implementação fake com armazenamento em memória (HashMap)
+  - `CarrinhoDeComprasServiceFake`: Implementação fake com validação de propriedade
+
+**Executar:**
+```powershell
+.\mvnw.cmd test -Dtest=CompraServiceFinalizarCompraCenario2Test
+```
+
+### Verificações nos Testes
+
+Todos os testes verificam **duas coisas**:
+
+1. **Comportamento esperado** (usando `assertThat()`):
+   - Resultado retornado correto
+   - Exceções lançadas com mensagens apropriadas
+   - Estado dos objetos após operação
+
+2. **Métodos invocados** (usando `verify()`):
+   - Invocações dos mocks foram realizadas
+   - Sequência de chamadas está correta
+   - Rollback executado quando necessário
+
+### Cobertura de Código
+
+**Método `finalizarCompra()`:**
+- **Cobertura de Branches (Decisões)**: **6/6 → 100%** ✅
+- **Cobertura de Instruções**: **103/103 → 100%** ✅
+- **Cobertura de Linhas**: **18/18 → 100%** ✅
+
+**Importante:** Cada cenário **individualmente** já atinge 100% de cobertura de branches!
+
+### Verificar Cobertura
+
+Para verificar a cobertura de branches do `finalizarCompra()`:
+
+1. Execute os testes com relatório:
+   ```powershell
+   .\mvnw.cmd clean test jacoco:report
+   ```
+
+2. Abra o relatório:
+   ```
+   target/site/jacoco/index.html
+   ```
+
+3. Navegue até:
+   - `ecommerce.service` → `CompraService` → `finalizarCompra(Long, Long)`
+
+4. Confirme:
+   - **Missed Branches**: 0
+   - **Cov.**: 100%
 
 ---
 
